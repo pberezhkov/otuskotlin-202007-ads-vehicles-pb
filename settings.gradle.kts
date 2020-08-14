@@ -6,3 +6,4 @@ pluginManagement {
         kotlin("jvm") version kotlinVersion
     }
 }
+include("ok-ads-vehicles-mp-transport-models")
