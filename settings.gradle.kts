@@ -7,7 +7,14 @@ pluginManagement {
         kotlin("multiplatform") version kotlinVersion apply false
         kotlin("plugin.serialization") version kotlinVersion apply false
     }
+
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+        jcenter()
+    }
 }
 
+include(":ok-ads-vehicles-be-common")
 include(":ok-ads-vehicles-mp-transport-models")
-include("ok-ads-vehicles-be-common")
+include(":ok-ads-vehicles-be-transport-mp")
