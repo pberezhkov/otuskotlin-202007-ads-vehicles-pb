@@ -21,5 +21,6 @@ data class Ad (
         val owners: Int?,
         val vin: String?,
         val licensePlate: String?,
-        val price: Int
+        val price: Int,
+        val user: User
 )
