@@ -3,6 +3,8 @@ package ru.otus.otuskotlin.ads_vehicles.transport.multiplatform.backend
 import ru.otus.otuskotlin.ads_vehicles.backend.models.*
 import ru.otus.otuskotlin.ads_vehicles.transport.models.KmpAd
 
+
+
 fun Ad.kmp(): KmpAd = KmpAd(
     id = this.id,
     year = this.year.value,
