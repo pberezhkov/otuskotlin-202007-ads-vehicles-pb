@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class KmpAdUpdate(
-        var id: Int? = null,
+        var id: String? = null,
         override var year: Int? = null,
         override var modelId: String? = null,
         override var mileage: Int? = null,
