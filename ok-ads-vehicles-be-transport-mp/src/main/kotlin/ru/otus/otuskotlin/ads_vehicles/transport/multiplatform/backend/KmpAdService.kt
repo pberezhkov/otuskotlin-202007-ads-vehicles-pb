@@ -2,9 +2,7 @@ package ru.otus.otuskotlin.ads_vehicles.transport.multiplatform.backend
 
 import ru.otus.otuskotlin.ads_vehicles.backend.AdContext
 import ru.otus.otuskotlin.ads_vehicles.backend.models.*
-import ru.otus.otuskotlin.ads_vehicles.transport.models.KmpAdGet
-import ru.otus.otuskotlin.ads_vehicles.transport.models.KmpAdListResponse
-import ru.otus.otuskotlin.ads_vehicles.transport.models.KmpAdSingleResponse
+import ru.otus.otuskotlin.ads_vehicles.transport.models.*
 import java.time.LocalDate
 import java.time.Year
 import java.util.*
@@ -23,16 +21,25 @@ class KmpAdService {
         return this.listResult()
     }
 
-    public suspend fun create(): KmpAdSingleResponse {
-        // todo
+    public suspend fun create(query: KmpAdCreate): KmpAdSingleResponse = AdContext().run {
+        this.setQuery(query)
+        this.responseAd = stubModel(UUID.randomUUID().toString())
+
+        return this.singleResult()
     }
 
-    public suspend fun update(): KmpAdSingleResponse {
-        // todo
+    public suspend fun update(query: KmpAdUpdate): KmpAdSingleResponse = AdContext().run {
+        this.setQuery(query)
+        this.responseAd = stubModel(query.id ?: throw RuntimeException("Ad ID missing"))
+
+        return this.singleResult()
     }
 
-    public suspend fun delete(): KmpAdSingleResponse {
-        // todo
+    public suspend fun delete(query: KmpAdDelete): KmpAdSingleResponse = AdContext().run {
+        this.setQuery(query)
+        this.responseAd = stubModel(query.adId ?: throw RuntimeException("Ad ID missing"))
+
+        return this.singleResult()
     }
 
     private fun stubModel(adId: String): Ad = Ad(

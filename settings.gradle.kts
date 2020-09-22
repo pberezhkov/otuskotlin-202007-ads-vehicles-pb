@@ -18,3 +18,4 @@ pluginManagement {
 include(":ok-ads-vehicles-be-common")
 include(":ok-ads-vehicles-mp-transport-models")
 include(":ok-ads-vehicles-be-transport-mp")
+include(":ok-ads-vehicles-be-app-ktor")
