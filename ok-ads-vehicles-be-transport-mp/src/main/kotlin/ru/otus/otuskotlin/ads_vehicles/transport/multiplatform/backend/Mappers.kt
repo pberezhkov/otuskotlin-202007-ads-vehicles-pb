@@ -7,20 +7,32 @@ import java.time.LocalDate
 import java.time.Year
 
 fun AdContext.setQuery(request: KmpAdGet): AdContext = this.apply {
-    //todo
+    this.requestAdId = request.adId
 }
 
 fun AdContext.setQuery(request: KmpAdDelete): AdContext = this.apply {
-    //todo
+    this.requestAdId = request.adId
 }
 
 fun AdContext.setQuery(request: KmpAdCreate): AdContext = this.apply {
-    //todo
+    this.requestAd = request.model()
 }
 
 fun AdContext.setQuery(request: KmpAdUpdate): AdContext = this.apply {
-    //todo
+    this.requestAd = request.model()
 }
+
+fun AdContext.singleResult(): KmpAdSingleResponse = KmpAdSingleResponse(
+        data = this.responseAd?.kmp(),
+        errors = null,
+        status = KmpAdResponseStatus.OK
+)
+
+fun AdContext.listResult(): KmpAdListResponse = KmpAdListResponse(
+        data = this.responseAd?.let { listOf(it.kmp()) },
+        errors = null,
+        status = KmpAdResponseStatus.OK
+)
 
 fun Chassis.Companion.fromReq(reqChassis: String): Chassis =
     when (reqChassis) {
