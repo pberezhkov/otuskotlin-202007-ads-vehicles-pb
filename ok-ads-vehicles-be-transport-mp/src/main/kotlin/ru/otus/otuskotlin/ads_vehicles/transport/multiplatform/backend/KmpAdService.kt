@@ -2,6 +2,9 @@ package ru.otus.otuskotlin.ads_vehicles.transport.multiplatform.backend
 
 import ru.otus.otuskotlin.ads_vehicles.backend.AdContext
 import ru.otus.otuskotlin.ads_vehicles.backend.models.*
+import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Make
+import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Model
+import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.enums.*
 import ru.otus.otuskotlin.ads_vehicles.transport.models.*
 import java.time.LocalDate
 import java.time.Year
@@ -55,15 +58,15 @@ class KmpAdService {
                     name = "R8"
             ),
             mileage = 2072,
-            engine = Engine.PETROL,
+            engine = EngineType.PETROL,
             engineCC = 5204,
             powerHP = 550,
             powerKW = 404,
             torqueNM = 540,
-            gearbox = Gearbox.DCT,
-            drive = Drive.FULL_TIME_AWD,
+            gearbox = GearboxType.DCT,
+            drive = DriveType.FULL_TIME_AWD,
             steeringWheel = SteeringWheel.LEFT,
-            chassis = Chassis.COUPE,
+            chassis = ChassisType.COUPE,
             doors = 2,
             colour = Colour.BLACK,
             owners = 1,
@@ -72,13 +75,13 @@ class KmpAdService {
             licensePlate = "P040YH799",
             user = User(
                     id = UUID.randomUUID().toString(),
-                    lastName = "Pupkin",
-                    firstName = "Vasily",
-                    middleName = "Gennadievich",
+                    surname = "Pupkin",
+                    name = "Vasily",
+                    patronymic = "Gennadievich",
                     birthDate = LocalDate.of(1980, 1, 1),
                     phone = "79001234567",
                     registrationDate = LocalDate.of(2020, 9, 15),
-                    status = UserStatus.ACTIVE
+                    isActive = true
             )
     )
 }

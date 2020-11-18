@@ -4,5 +4,8 @@ enum class AdContextStatus {
     NONE,
     PENDING,
     SUCCESS,
-    FAILURE
+    FAILURE;
+
+    val isError
+        get() = this.equals(FAILURE)
 }

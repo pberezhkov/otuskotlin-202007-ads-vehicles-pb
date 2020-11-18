@@ -2,6 +2,9 @@ package ru.otus.otuskotlin.ads_vehicles.transport.multiplatform.backend
 
 import ru.otus.otuskotlin.ads_vehicles.backend.AdContext
 import ru.otus.otuskotlin.ads_vehicles.backend.models.*
+import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Make
+import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Model
+import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.enums.*
 import ru.otus.otuskotlin.ads_vehicles.transport.models.*
 import java.time.LocalDate
 import java.time.Year
@@ -34,18 +37,18 @@ fun AdContext.listResult(): KmpAdListResponse = KmpAdListResponse(
         status = KmpAdResponseStatus.OK
 )
 
-fun Chassis.Companion.fromReq(reqChassis: String): Chassis =
+fun ChassisType.Companion.fromReq(reqChassis: String): ChassisType =
     when (reqChassis) {
-        "coupe" -> Chassis.COUPE
-        "sedan" -> Chassis.SEDAN
-        "convertible" -> Chassis.CONVERTIBLE
-        "liftback" -> Chassis.LIFTBACK
-        "hatchback" -> Chassis.HATCHBACK
-        "roadster" -> Chassis.ROADSTER
+        "coupe" -> ChassisType.COUPE
+        "sedan" -> ChassisType.SEDAN
+        "convertible" -> ChassisType.CONVERTIBLE
+        "liftback" -> ChassisType.LIFTBACK
+        "hatchback" -> ChassisType.HATCHBACK
+        "roadster" -> ChassisType.ROADSTER
         else -> throw Exception("Unknown chassis type")
     }
 
-fun Colour.Companion.fromReq(reqColor: String): Colour = 
+fun Colour.Companion.fromReq(reqColor: String): Colour =
     when (reqColor) {
         "black" -> Colour.BLACK
         "white" -> Colour.WHITE
@@ -59,33 +62,33 @@ fun Colour.Companion.fromReq(reqColor: String): Colour =
         else -> throw Exception("Unknown colour")
     }
 
-fun Drive.Companion.fromReq(reqDrive: String): Drive = 
+fun DriveType.Companion.fromReq(reqDrive: String): DriveType =
     when (reqDrive) {
-        "rwd" -> Drive.RWD
-        "fwd" -> Drive.FWD
-        "full_time_awd" -> Drive.FULL_TIME_AWD
-        "part_time_awd" -> Drive.PART_TIME_AWD
+        "rwd" -> DriveType.RWD
+        "fwd" -> DriveType.FWD
+        "full_time_awd" -> DriveType.FULL_TIME_AWD
+        "part_time_awd" -> DriveType.PART_TIME_AWD
         else -> throw Exception("Unknown drive type")
     }
 
-fun Engine.Companion.fromReq(reqEngine: String): Engine = 
+fun EngineType.Companion.fromReq(reqEngine: String): EngineType =
     when (reqEngine) {
-        "petrol" -> Engine.PETROL
-        "diesel" -> Engine.DIESEL
-        "petrol_boosted" -> Engine.PETROL_BOOSTED
-        "diesel_boosted" -> Engine.DIESEL_BOOSTED
-        "electric" -> Engine.ELECTRIC
+        "petrol" -> EngineType.PETROL
+        "diesel" -> EngineType.DIESEL
+        "petrol_boosted" -> EngineType.PETROL_BOOSTED
+        "diesel_boosted" -> EngineType.DIESEL_BOOSTED
+        "electric" -> EngineType.ELECTRIC
         else -> throw Exception("Unknown engine type")
     }
 
-fun Gearbox.Companion.fromReq(reqGearbox: String): Gearbox = 
+fun GearboxType.Companion.fromReq(reqGearbox: String): GearboxType =
     when (reqGearbox) {
-        "manual" -> Gearbox.MANUAL
-        "auto" -> Gearbox.AUTO
-        "robot" -> Gearbox.ROBOT
-        "dct" -> Gearbox.DCT
-        "cvt" -> Gearbox.CVT
-        "none" -> Gearbox.NONE
+        "manual" -> GearboxType.MANUAL
+        "auto" -> GearboxType.AUTO
+        "robot" -> GearboxType.ROBOT
+        "dct" -> GearboxType.DCT
+        "cvt" -> GearboxType.CVT
+        "none" -> GearboxType.NONE
         else -> throw Exception("Unknown gearbox type")
     }
 
@@ -101,22 +104,23 @@ fun KmpAdSave.model(): Ad = Ad(
     year = Year.of(this.year!!),
     model = modelById(this.modelId!!),
     mileage = this.mileage!!,
-    engine = Engine.fromReq(this.engine!!),
+    engine = EngineType.fromReq(this.engine!!),
     engineCC = this.engineCC!!,
     powerHP = this.powerHP!!,
     powerKW = this.powerHP!!,
     torqueNM = this.torqueNM!!,
-    gearbox = Gearbox.fromReq(this.gearbox!!),
-    drive = Drive.fromReq(this.drive!!),
+    gearbox = GearboxType.fromReq(this.gearbox!!),
+    drive = DriveType.fromReq(this.drive!!),
     steeringWheel = SteeringWheel.fromReq(this.steeringWheel!!),
-    chassis = Chassis.fromReq(this.chassis!!),
+    chassis = ChassisType.fromReq(this.chassis!!),
     doors = this.doors!!,
     colour = Colour.fromReq(this.colour!!),
     owners = this.owners!!,
     vin = this.vin!!,
     licensePlate = this.licensePlate!!,
     price = this.price!!,
-    user = userById(this.userId!!)
+    user = userById(this.userId!!),
+    pictures = null
 )
 
 fun Ad.kmp(): KmpAd = KmpAd(
@@ -125,15 +129,15 @@ fun Ad.kmp(): KmpAd = KmpAd(
     make = this.model.make.name,
     model = this.model.name,
     mileage = this.mileage,
-    engine = Engine.displayName(this.engine),
+    engine = EngineType.displayName(this.engine),
     engineCC = engineCC,
     powerHP = this.powerHP,
     powerKW = this.powerKW,
     torqueNM = this.torqueNM,
-    gearbox = Gearbox.displayName(this.gearbox),
-    drive = Drive.displayName(this.drive),
+    gearbox = GearboxType.displayName(this.gearbox),
+    drive = DriveType.displayName(this.drive),
     steeringWheel = SteeringWheel.displayName(this.steeringWheel),
-    chassis = Chassis.displayName(this.chassis),
+    chassis = ChassisType.displayName(this.chassis),
     doors = this.doors,
     colour = Colour.displayName(this.colour),
     owners = this.owners,
@@ -148,4 +152,4 @@ private fun modelById(modelId: String): Model =
     Model(modelId, Make("", "", ""), "")
 
 private fun userById(userId: String): User =
-    User(userId, "", "", null, LocalDate.now(), "", LocalDate.now(), UserStatus.ACTIVE)
+    User(userId, "", "", null, LocalDate.now(), "", LocalDate.now(), true)
