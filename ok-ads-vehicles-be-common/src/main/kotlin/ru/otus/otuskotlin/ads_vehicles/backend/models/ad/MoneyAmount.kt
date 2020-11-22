@@ -1,4 +1,4 @@
-package ru.otus.otuskotlin.ads_vehicles.backend.models
+package ru.otus.otuskotlin.ads_vehicles.backend.models.ad
 
 /**
  * Money amount

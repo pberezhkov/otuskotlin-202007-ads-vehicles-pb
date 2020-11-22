@@ -27,6 +27,11 @@ data class Equipment(
         val engineType: EngineType? = null,
 
         /**
+         * Engine layout
+         */
+        val engineLayout: EngineLayout? = null,
+
+        /**
          * Engine boost type
          */
         val boostType: BoostType? = null,

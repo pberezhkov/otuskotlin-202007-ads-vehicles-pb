@@ -2,6 +2,7 @@ package ru.otus.otuskotlin.ads_vehicles.transport.multiplatform.backend
 
 import ru.otus.otuskotlin.ads_vehicles.backend.AdContext
 import ru.otus.otuskotlin.ads_vehicles.backend.models.*
+import ru.otus.otuskotlin.ads_vehicles.backend.models.ad.Ad
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Make
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Model
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.enums.*

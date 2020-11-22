@@ -1,10 +1,10 @@
-package ru.otus.otuskotlin.ads_vehicles.backend.models
+package ru.otus.otuskotlin.ads_vehicles.backend.models.ad
 
+import ru.otus.otuskotlin.ads_vehicles.backend.models.User
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Equipment
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Generation
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Make
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Model
-import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.enums.*
 import java.awt.Color
 import java.time.*
 

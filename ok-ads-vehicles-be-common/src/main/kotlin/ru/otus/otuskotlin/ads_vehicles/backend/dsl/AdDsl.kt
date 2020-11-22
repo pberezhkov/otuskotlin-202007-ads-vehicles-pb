@@ -1,6 +1,6 @@
 package ru.otus.otuskotlin.ads_vehicles.backend.dsl
 
-import ru.otus.otuskotlin.ads_vehicles.backend.models.Ad
+import ru.otus.otuskotlin.ads_vehicles.backend.models.ad.Ad
 
 @AdDslMarker
 class AdDsl {

@@ -2,12 +2,12 @@ package ru.otus.otuskotlin.ads_vehicles.transport.multiplatform.backend
 
 import ru.otus.otuskotlin.ads_vehicles.backend.AdContext
 import ru.otus.otuskotlin.ads_vehicles.backend.models.*
+import ru.otus.otuskotlin.ads_vehicles.backend.models.ad.Ad
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Make
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Model
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.enums.*
-import ru.otus.otuskotlin.ads_vehicles.transport.models.*
+import ru.otus.otuskotlin.ads_vehicles.transport.models.ad.KmpAd
 import java.time.LocalDate
-import java.time.Year
 
 fun AdContext.setQuery(request: KmpAdGet): AdContext = this.apply {
     this.requestAdId = request.adId
