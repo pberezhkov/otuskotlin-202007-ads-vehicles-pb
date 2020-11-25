@@ -19,7 +19,7 @@ data class Make (
         /**
          * ISO country code
          */
-        val isoCountry: Locale.IsoCountryCode? = null
+        val isoCountryCode: String? = null
 ) {
     companion object {
         val NONE: Make = Make()

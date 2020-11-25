@@ -10,7 +10,7 @@ data class MakeContext(
         var responseMakeIndex: MutableList<Make> = mutableListOf()
 ) : AbstractContext() {
     data class Filter(
-            val isoCountry: Locale.IsoCountryCode? = null,
+            val isoCountry: String? = null,
             val searchString: String? = null
     )
 }

@@ -17,5 +17,5 @@ data class KmpMake(
         /**
          * ISO country code
          */
-        var isoCountry: String? = null
+        var isoCountryCode: String? = null
 )

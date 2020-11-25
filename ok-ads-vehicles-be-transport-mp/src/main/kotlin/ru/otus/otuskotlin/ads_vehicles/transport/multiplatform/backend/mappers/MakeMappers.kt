@@ -20,7 +20,7 @@ fun MakeContext.setQuery(query: KmpMakeIndexQuery) = this.apply {
 
     this.filter = query.filter?.let { queryFilter: KmpMakeIndexQuery.Filter ->
         MakeContext.Filter(
-                isoCountry = queryFilter.isoCountryCode?.let { Locale.IsoCountryCode.valueOf(it) },
+                isoCountry = queryFilter.isoCountryCode,
                 searchString = queryFilter.searchString
         )
     }
@@ -37,5 +37,5 @@ fun MakeContext.responseIndex(): KmpMakeIndexResponse = KmpMakeIndexResponse(
 fun Make.kmp() = KmpMake(
         id = this.id,
         name = this.name,
-        isoCountry = this.isoCountry.toString()
+        isoCountryCode = this.isoCountryCode
 )
