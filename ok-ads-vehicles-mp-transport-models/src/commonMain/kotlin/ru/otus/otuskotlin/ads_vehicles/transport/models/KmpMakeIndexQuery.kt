@@ -10,6 +10,7 @@ data class KmpMakeIndexQuery(
 ) {
     @Serializable
     data class Filter(
+            var isoCountryCode: String? = null,
             var searchString: String? = null
     )
 }

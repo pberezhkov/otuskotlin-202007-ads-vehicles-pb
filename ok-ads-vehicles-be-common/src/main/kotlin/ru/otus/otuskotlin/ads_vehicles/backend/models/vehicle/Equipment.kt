@@ -42,6 +42,16 @@ data class Equipment(
         val engineCC: Int? = null,
 
         /**
+         * Engine cylinder layout
+         */
+        val engineCylinderLayout: EngineCylinderLayout? = null,
+
+        /**
+         * Engine cylinders count
+         */
+        val engineCylinders: Int? = null,
+
+        /**
          * Engine power, HP
          */
         val enginePowerHP: Int? = null,

@@ -13,6 +13,10 @@ data class Mileage(
 
     enum class MileageUnit {
         KM,
-        MI
+        MI;
+
+        companion object {
+            val DEFAULT: MileageUnit = KM
+        }
     }
 }

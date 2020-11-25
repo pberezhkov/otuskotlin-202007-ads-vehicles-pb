@@ -40,6 +40,16 @@ data class KmpEquipment(
         var engineCC: Int? = null,
 
         /**
+         * Engine cylinder layout
+         */
+        var engineCylinderLayout: String? = null,
+
+        /**
+         * Engine cylinders count
+         */
+        var engineCylinders: Int? = null,
+
+        /**
          * Engine power, HP
          */
         var enginePowerHP: Int? = null,

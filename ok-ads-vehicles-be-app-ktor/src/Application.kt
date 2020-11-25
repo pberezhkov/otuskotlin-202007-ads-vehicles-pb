@@ -6,8 +6,9 @@ import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import ru.otus.otuskotlin.ads_vehicles.transport.models.KmpAdGet
-import ru.otus.otuskotlin.ads_vehicles.transport.multiplatform.backend.KmpAdService
+import io.ktor.serialization.*
+import kotlinx.serialization.json.Json
+import ru.otus.otuskotlin.ads_vehicles.transport.models.KmpMakeIndexQuery
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -27,26 +28,46 @@ fun Application.module(testing: Boolean = false) {
         anyHost() // @TODO: Don't do this in production if possible. Try to limit it.
     }
 
+    install(ContentNegotiation) {
+        json(
+                contentType = ContentType.Application.Json,
+                json = Json {
+                    prettyPrint = true
+                }
+        )
+    }
+
     routing {
         route("/api") {
-            post("/ad/get") {
-                val query = call.receive<KmpAdGet>()
-                call.respond(service.get(query))
+            get("/make/index") {
+                call.respond(service.indexMake(call.receive<KmpMakeIndexQuery>()))
             }
 
-            post("/ad/list") {
-
-            }
-
-            post("/ad/create") {
+            get("/model/index") {
 
             }
 
-            post("/ad/update") {
+            get("/generation/index") {
 
             }
 
-            post("/ad/delete") {
+            get("/equipment/index") {
+
+            }
+
+            post("/ad") {
+
+            }
+
+            patch("/ad") {
+
+            }
+
+            get("/ad/index") {
+
+            }
+
+            get("/ad") {
 
             }
         }

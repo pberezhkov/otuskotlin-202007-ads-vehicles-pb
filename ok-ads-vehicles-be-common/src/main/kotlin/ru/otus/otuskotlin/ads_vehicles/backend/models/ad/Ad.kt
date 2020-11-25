@@ -6,7 +6,8 @@ import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Generation
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Make
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Model
 import java.awt.Color
-import java.time.*
+import java.time.LocalDate
+import java.time.Year
 
 /**
  * Ad
@@ -80,7 +81,7 @@ data class Ad (
         /**
          * Vehicle pictures
          */
-        val pictures: ArrayList<Picture>? = null,
+        val pictures: MutableList<Picture>? = null,
 
         /**
          * User-defined vehicle description

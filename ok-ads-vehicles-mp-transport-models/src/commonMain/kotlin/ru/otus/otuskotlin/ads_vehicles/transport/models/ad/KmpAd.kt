@@ -72,7 +72,7 @@ data class KmpAd(
         /**
          * Vehicle pictures
          */
-        val pictureIds: ArrayList<String>? = null,
+        val pictureIds: List<String>? = null,
 
         /**
          * User-defined vehicle description
