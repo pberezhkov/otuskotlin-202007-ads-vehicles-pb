@@ -2,6 +2,7 @@ package ru.otus.otuskotlin.ads_vehicles.backend.repository.inmemory
 
 import kotlinx.coroutines.runBlocking
 import ru.otus.otuskotlin.ads_vehicles.backend.contexts.MakeContext
+import ru.otus.otuskotlin.ads_vehicles.backend.dsl.make.make
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Make
 import ru.otus.otuskotlin.ads_vehicles.backend.repository.inmemory.repositories.MakeRepoInmemory
 import java.util.*
@@ -45,11 +46,11 @@ class MakeRepoInmemoryTest {
         val repo = MakeRepoInmemory(
                 ttl = 1.toDuration(DurationUnit.HOURS),
                 initObjects = listOf(
-                        Make(
-                                UUID.randomUUID().toString(),
-                                "Audi",
-                                "DE"
-                        ),
+                        make {
+                            id = UUID.randomUUID().toString()
+                            name { name = "Audi" }
+                            isoCountryCode { isoCountryCode = "DE" }
+                        },
                         Make(
                                 UUID.randomUUID().toString(),
                                 "BMW",

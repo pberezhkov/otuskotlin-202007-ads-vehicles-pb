@@ -1,4 +1,4 @@
-package ru.otus.otuskotlin.ads_vehicles.backend.dsl
+package ru.otus.otuskotlin.ads_vehicles.backend.dsl.ad
 
 import ru.otus.otuskotlin.ads_vehicles.backend.models.ad.Ad
 
