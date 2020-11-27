@@ -48,6 +48,7 @@ dependencies {
     implementation(project(":ok-ads-vehicles-be-common"))
     implementation(project(":ok-ads-vehicles-mp-transport-models"))
     implementation(project(":ok-ads-vehicles-be-transport-mp"))
+    implementation(project(":ok-ads-vehicles-be-repo-inmemory"))
 
     implementation(kotlin("stdlib-jdk8"))
     implementation("io.ktor:ktor-server-netty:$ktorVersion")

@@ -23,7 +23,7 @@ fun MakeContext.setQuery(query: KmpMakeIndexQuery) = this.apply {
                 isoCountry = queryFilter.isoCountryCode,
                 searchString = queryFilter.searchString
         )
-    }
+    } ?: MakeContext.Filter.NONE
 }
 
 fun MakeContext.responseItem(): KmpMake = this.responseMake.kmp()

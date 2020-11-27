@@ -8,14 +8,24 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.serialization.*
 import kotlinx.serialization.json.Json
+import ru.otus.otuskotlin.ads_vehicles.backend.repositories.IMakeRepository
+import ru.otus.otuskotlin.ads_vehicles.backend.repository.inmemory.repositories.MakeRepoInmemory
 import ru.otus.otuskotlin.ads_vehicles.transport.models.KmpMakeIndexQuery
+import kotlin.time.DurationUnit
+import kotlin.time.ExperimentalTime
+import kotlin.time.toDuration
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 @Suppress("unused") // Referenced in application.conf
 @kotlin.jvm.JvmOverloads
 fun Application.module(testing: Boolean = false) {
-    val service: KmpAdService = KmpAdService()
+    @OptIn(ExperimentalTime::class)
+    val makeRepoInmemory: IMakeRepository = MakeRepoInmemory(24.toDuration(DurationUnit.HOURS))
+    val seeder: CatalogSeeder = CatalogSeeder(makeRepoInmemory);
+    seeder.seed()
+
+    val service: KmpAdService = KmpAdService(makeRepoInmemory)
 
     install(CORS) {
         method(HttpMethod.Options)

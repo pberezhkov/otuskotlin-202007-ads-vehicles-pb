@@ -1,26 +1,31 @@
 package ru.otus.otuskotlin.ads_vehicles.backend.dsl.make
 
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Make
+import java.util.*
 
 @MakeDslMarker
 class MakeDsl {
-    var id: String = ""
-    private var name: MakeNameDsl = MakeNameDsl.EMPTY
-    private var isoCountryCode: MakeIsoCountryCodeDsl = MakeIsoCountryCodeDsl.EMPTY
+    private var id: String = ""
+    private var name: String = ""
+    private var isoCountryCode: String = ""
 
 
     public fun build(): Make = Make(
-            id = this.id,
-            name = this.name.name,
-            isoCountryCode = this.isoCountryCode.isoCountryCode
+            id = this.id.takeIf { it.isNotBlank() } ?: UUID.randomUUID().toString(),
+            name = this.name,
+            isoCountryCode = this.isoCountryCode
     )
 
-    public fun name(conf: MakeNameDsl.() -> Unit): Unit {
-        this.name = MakeNameDsl().apply(conf)
+    public fun id(lambda: () -> String): Unit {
+        this.id = lambda()
     }
 
-    public fun isoCountryCode(conf: MakeIsoCountryCodeDsl.() -> Unit): Unit {
-        this.isoCountryCode = MakeIsoCountryCodeDsl().apply(conf)
+    public fun name(lambda: () -> String): Unit {
+        this.name = lambda()
+    }
+
+    public fun isoCountryCode(lambda: () -> String): Unit {
+        this.isoCountryCode = lambda()
     }
 }
 
