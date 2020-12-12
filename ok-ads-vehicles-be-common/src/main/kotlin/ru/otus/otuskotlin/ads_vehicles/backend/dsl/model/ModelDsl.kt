@@ -2,7 +2,7 @@ package ru.otus.otuskotlin.ads_vehicles.backend.dsl.model
 
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Make
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Model
-import java.util.*
+import ru.otus.otuskotlin.ads_vehicles.backend.sha1
 
 @ModelDslMarker
 class ModelDsl {
@@ -12,7 +12,7 @@ class ModelDsl {
 
 
     public fun build(): Model = Model(
-            id = this.id.takeIf { it.isNotBlank() } ?: UUID.randomUUID().toString(),
+            id = this.id.takeIf { it.isNotBlank() } ?: sha1(this.make.id.plus(this.name)),
             make = this.make,
             name = this.name
     )

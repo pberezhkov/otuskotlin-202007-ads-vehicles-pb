@@ -9,5 +9,7 @@ enum class EngineLayout {
     MID_STRAIGHT,
     MID_TRANSVERSED,
     REAR_STRAIGHT,
-    REAR_TRANSVERSED
+    REAR_TRANSVERSED;
+
+    companion object {}
 }

@@ -3,6 +3,7 @@ package ru.otus.otuskotlin.ads_vehicles.backend.dsl.equipment
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Equipment
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Generation
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.enums.*
+import ru.otus.otuskotlin.ads_vehicles.backend.sha1
 import java.util.*
 
 @EquipmentDslMarker
@@ -24,7 +25,7 @@ class EquipmentDsl {
     private var chassisType: ChassisType? = null
 
     public fun build(): Equipment = Equipment(
-            id = this.id.takeIf { it.isNotBlank() } ?: UUID.randomUUID().toString(),
+            id = this.id.takeIf { it.isNotBlank() } ?: sha1(this.generation.id.plus(this.name)),
             name = this.name,
             generation = this.generation,
             engineType = this.engineType,

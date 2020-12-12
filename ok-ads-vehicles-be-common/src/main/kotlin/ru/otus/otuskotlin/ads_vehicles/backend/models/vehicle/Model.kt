@@ -1,5 +1,7 @@
 package ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle
 
+import ru.otus.otuskotlin.ads_vehicles.backend.models.IModel
+
 /**
  * Vehicle model
  */
@@ -7,7 +9,7 @@ data class Model (
         /**
          * ID
          */
-        val id: String? = null,
+        override val id: String? = null,
 
         /**
          * Make
@@ -18,7 +20,7 @@ data class Model (
          * Name
          */
         val name: String? = null
-) {
+) : IModel {
     companion object {
         val NONE: Model = Model()
     }

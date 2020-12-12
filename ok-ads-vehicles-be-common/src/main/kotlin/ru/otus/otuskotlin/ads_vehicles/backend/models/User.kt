@@ -9,7 +9,7 @@ data class User (
         /**
          * ID
          */
-        val id: String? = null,
+        override val id: String? = null,
 
         /**
          * Name
@@ -45,7 +45,7 @@ data class User (
          * Activity flag
          */
         val isActive: Boolean? = null
-) {
+) : IModel {
     companion object {
         val NONE: User = User()
     }

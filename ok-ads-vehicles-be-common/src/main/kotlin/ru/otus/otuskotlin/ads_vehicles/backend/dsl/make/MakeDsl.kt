@@ -1,7 +1,7 @@
 package ru.otus.otuskotlin.ads_vehicles.backend.dsl.make
 
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Make
-import java.util.*
+import ru.otus.otuskotlin.ads_vehicles.backend.sha1
 
 @MakeDslMarker
 class MakeDsl {
@@ -11,7 +11,7 @@ class MakeDsl {
 
 
     public fun build(): Make = Make(
-            id = this.id.takeIf { it.isNotBlank() } ?: UUID.randomUUID().toString(),
+            id = this.id.takeIf { it.isNotBlank() } ?: sha1(this.name),
             name = this.name,
             isoCountryCode = this.isoCountryCode
     )

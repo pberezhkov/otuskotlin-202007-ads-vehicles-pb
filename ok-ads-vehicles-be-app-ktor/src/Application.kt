@@ -22,8 +22,6 @@ fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 fun Application.module(testing: Boolean = false) {
     @OptIn(ExperimentalTime::class)
     val makeRepoInmemory: IMakeRepository = MakeRepoInmemory(24.toDuration(DurationUnit.HOURS))
-    val seeder: CatalogSeeder = CatalogSeeder(makeRepoInmemory);
-    seeder.seed()
 
     val service: KmpAdService = KmpAdService(makeRepoInmemory)
 

@@ -1,5 +1,6 @@
 package ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle
 
+import ru.otus.otuskotlin.ads_vehicles.backend.models.IModel
 import java.util.*
 
 /**
@@ -9,7 +10,7 @@ data class Make (
         /**
          * ID
          */
-        val id: String? = null,
+        override val id: String? = null,
 
         /**
          * Name
@@ -20,7 +21,7 @@ data class Make (
          * ISO country code
          */
         val isoCountryCode: String? = null
-) {
+) : IModel {
     companion object {
         val NONE: Make = Make()
     }

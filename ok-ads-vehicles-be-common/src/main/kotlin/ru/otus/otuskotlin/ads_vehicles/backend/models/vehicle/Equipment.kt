@@ -1,5 +1,6 @@
 package ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle
 
+import ru.otus.otuskotlin.ads_vehicles.backend.models.IModel
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.enums.*
 
 /**
@@ -9,7 +10,7 @@ data class Equipment(
         /**
          * ID
          */
-        val id: String? = null,
+        override val id: String? = null,
 
         /**
          * Generation
@@ -80,7 +81,7 @@ data class Equipment(
          * Chassis type
          */
         val chassisType: ChassisType? = null
-) {
+) : IModel {
     companion object {
         val NONE: Equipment = Equipment()
     }

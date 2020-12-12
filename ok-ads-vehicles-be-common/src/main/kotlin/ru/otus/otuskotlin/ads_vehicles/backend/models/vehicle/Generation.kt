@@ -1,5 +1,6 @@
 package ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle
 
+import ru.otus.otuskotlin.ads_vehicles.backend.models.IModel
 import java.time.Year
 
 /**
@@ -9,7 +10,7 @@ data class Generation(
         /**
          * ID
          */
-        val id: String? = null,
+        override val id: String? = null,
 
         /**
          * Model
@@ -30,7 +31,7 @@ data class Generation(
          * Production ending year
          */
         val yearTo: Year? = null
-) {
+) : IModel {
     companion object {
         val NONE: Generation = Generation()
     }

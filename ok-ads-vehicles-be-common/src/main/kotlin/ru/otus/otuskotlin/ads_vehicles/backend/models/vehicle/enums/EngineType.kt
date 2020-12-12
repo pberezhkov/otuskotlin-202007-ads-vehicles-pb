@@ -8,4 +8,6 @@ enum class EngineType {
     DIESEL,
     HYBRID,
     ELECTRIC;
+
+    companion object {}
 }

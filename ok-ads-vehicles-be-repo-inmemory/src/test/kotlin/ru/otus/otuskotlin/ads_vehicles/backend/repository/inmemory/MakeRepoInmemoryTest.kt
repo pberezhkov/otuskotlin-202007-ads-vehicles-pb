@@ -47,9 +47,8 @@ class MakeRepoInmemoryTest {
                 ttl = 1.toDuration(DurationUnit.HOURS),
                 initObjects = listOf(
                         make {
-                            id = UUID.randomUUID().toString()
-                            name { name = "Audi" }
-                            isoCountryCode { isoCountryCode = "DE" }
+                            name { "Audi" }
+                            isoCountryCode { "DE" }
                         },
                         Make(
                                 UUID.randomUUID().toString(),

@@ -2,6 +2,7 @@ package ru.otus.otuskotlin.ads_vehicles.backend.dsl.generation
 
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Generation
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Model
+import ru.otus.otuskotlin.ads_vehicles.backend.sha1
 import java.time.Year
 import java.util.*
 
@@ -15,7 +16,7 @@ class GenerationDsl {
 
 
     public fun build(): Generation = Generation(
-            id = this.id.takeIf { it.isNotBlank() } ?: UUID.randomUUID().toString(),
+            id = this.id.takeIf { it.isNotBlank() } ?: sha1(this.model.id.plus(this.name)),
             model = this.model,
             name = this.name,
             yearFrom = this.yearFrom,
