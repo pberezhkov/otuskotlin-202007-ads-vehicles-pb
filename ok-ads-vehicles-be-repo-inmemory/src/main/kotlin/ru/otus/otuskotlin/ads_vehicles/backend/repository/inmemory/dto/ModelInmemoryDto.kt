@@ -8,12 +8,6 @@ data class ModelInmemoryDto(
         val makeId: String? = null,
         val name: String? = null
 ) {
-    fun model(make: Make): Model = Model(
-            id = this.id,
-            make = make,
-            name = this.name
-    )
-
     companion object {
         fun of(model: Model) = of(model, model.id)
         fun of(model: Model, id: String?) = ModelInmemoryDto(
@@ -22,4 +16,10 @@ data class ModelInmemoryDto(
                 name = model.name
         )
     }
+
+    fun model(make: Make): Model = Model(
+            id = this.id,
+            make = make,
+            name = this.name
+    )
 }

@@ -7,12 +7,6 @@ data class MakeInmemoryDto (
     var name: String? = null,
     var isoCountryCode: String? = null
 ) {
-    fun model(): Make = Make(
-            id = this.id,
-            name = this.name,
-            isoCountryCode = this.isoCountryCode
-    )
-
     companion object {
         fun of(make: Make) = of(make, make.id)
 
@@ -22,4 +16,10 @@ data class MakeInmemoryDto (
                 isoCountryCode = make.isoCountryCode
         )
     }
+
+    fun model(): Make = Make(
+            id = this.id,
+            name = this.name,
+            isoCountryCode = this.isoCountryCode
+    )
 }

@@ -22,7 +22,7 @@ fun GenerationContext.setQuery(query: KmpGenerationIndexQuery) = this.apply {
                 modelId = it.modelId,
                 searchString = it.searchString
         )
-    }
+    } ?: GenerationContext.Filter.NONE
 }
 
 fun GenerationContext.responseItem(): KmpGeneration = this.responseGeneration.kmp()

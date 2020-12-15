@@ -23,7 +23,7 @@ fun EquipmentContext.setQuery(query: KmpEquipmentIndexQuery) = this.apply {
                 generationId = it.generationId,
                 searchString = it.searchString
         )
-    }
+    } ?: EquipmentContext.Filter.NONE
 }
 
 fun EquipmentContext.responseItem(): KmpEquipment = this.responseEquipment.kmp()

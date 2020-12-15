@@ -17,5 +17,7 @@ enum class BoostType {
     /**
      * Supercharger
      */
-    SUPERCHARGER
+    SUPERCHARGER;
+
+    companion object {}
 }

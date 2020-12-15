@@ -33,4 +33,6 @@ enum class GearboxType {
      * Direct drive
      */
     DIRECT;
+
+    companion object {}
 }

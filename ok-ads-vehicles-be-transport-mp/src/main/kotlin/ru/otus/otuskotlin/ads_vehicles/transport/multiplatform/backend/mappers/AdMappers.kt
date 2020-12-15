@@ -60,7 +60,7 @@ fun AdContext.setQuery(query: KmpAdIndexQuery) = this.apply {
                 noNeedForRepair = it.noNeedForRepair,
                 withPictures = it.withPictures
         )
-    }
+    } ?: AdContext.Filter.NONE
 }
 
 fun AdContext.responseItem(): KmpAd = this.responseAd.kmp()

@@ -9,5 +9,7 @@ enum class EngineCylinderLayout {
     VR,
     W,
     FLAT,
-    ROTARY
+    ROTARY;
+
+    companion object {}
 }

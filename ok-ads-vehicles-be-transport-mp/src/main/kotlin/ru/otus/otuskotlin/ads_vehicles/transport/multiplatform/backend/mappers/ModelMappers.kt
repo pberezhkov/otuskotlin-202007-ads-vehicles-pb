@@ -22,7 +22,7 @@ fun ModelContext.setQuery(query: KmpModelIndexQuery) = this.apply {
                 makeId = it.makeId,
                 searchString = it.searchString
         )
-    }
+    } ?: ModelContext.Filter.NONE
 }
 
 fun ModelContext.responseItem(): KmpModel = this.responseModel.kmp()

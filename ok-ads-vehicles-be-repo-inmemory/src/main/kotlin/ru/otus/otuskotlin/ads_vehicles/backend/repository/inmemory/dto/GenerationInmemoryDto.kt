@@ -11,14 +11,6 @@ data class GenerationInmemoryDto(
         val yearFrom: Int? = null,
         val yearTo: Int? = null
 ) {
-    fun model(model: Model): Generation = Generation(
-            id = this.id,
-            model = model,
-            name = this.name,
-            yearFrom = Year.of(this.yearFrom ?: Year.MIN_VALUE),
-            yearTo = Year.of(this.yearTo ?: Year.MAX_VALUE)
-    )
-
     companion object {
         fun of(generation: Generation) = of(generation, generation.id)
         fun of(generation: Generation, id: String?) = GenerationInmemoryDto(
@@ -29,4 +21,12 @@ data class GenerationInmemoryDto(
                 yearTo = generation.yearTo?.value
         )
     }
+
+    fun model(model: Model): Generation = Generation(
+            id = this.id,
+            model = model,
+            name = this.name,
+            yearFrom = Year.of(this.yearFrom ?: Year.MIN_VALUE),
+            yearTo = Year.of(this.yearTo ?: Year.MAX_VALUE)
+    )
 }

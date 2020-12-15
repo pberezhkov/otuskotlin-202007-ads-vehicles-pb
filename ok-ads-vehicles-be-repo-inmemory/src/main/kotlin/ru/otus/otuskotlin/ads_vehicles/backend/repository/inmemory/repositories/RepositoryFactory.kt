@@ -9,7 +9,7 @@ import kotlin.time.DurationUnit
 import kotlin.time.ExperimentalTime
 import kotlin.time.toDuration
 
-class RepositoryFactory() : IRepositoryFactory {
+class RepositoryFactory : IRepositoryFactory {
     private var makeRepository: MakeRepoInmemory? = null
     private var modelRepository: ModelRepoInmemory? = null
     private var generationRepository: GenerationRepoInmemory? = null

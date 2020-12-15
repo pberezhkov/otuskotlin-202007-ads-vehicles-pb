@@ -16,4 +16,6 @@ enum class ChassisType {
     SUV_5D,
     VAN,
     ROADSTER;
+
+    companion object {}
 }

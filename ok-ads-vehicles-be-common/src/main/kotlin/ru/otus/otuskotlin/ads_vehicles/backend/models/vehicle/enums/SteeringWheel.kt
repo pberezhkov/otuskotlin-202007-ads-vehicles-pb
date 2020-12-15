@@ -7,4 +7,6 @@ enum class SteeringWheel {
     LEFT,
     RIGHT,
     CENTER;
+
+    companion object {}
 }

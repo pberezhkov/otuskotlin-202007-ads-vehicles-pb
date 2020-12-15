@@ -23,4 +23,6 @@ enum class DriveType {
      * Part-time all wheel drive
      */
     PART_TIME_AWD;
+
+    companion object {}
 }
