@@ -16,6 +16,7 @@ dependencies {
     implementation(kotlin("stdlib"))
 
     implementation(project(":ok-ads-vehicles-be-common"))
+    implementation(project(":ok-ads-vehicles-be-storage-common"))
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.cache2k:cache2k-core:$cache2kVersion")

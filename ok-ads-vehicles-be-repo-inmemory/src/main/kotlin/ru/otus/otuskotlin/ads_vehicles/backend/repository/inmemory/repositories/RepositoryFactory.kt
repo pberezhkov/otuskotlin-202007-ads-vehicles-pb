@@ -1,9 +1,9 @@
 package ru.otus.otuskotlin.ads_vehicles.backend.repository.inmemory.repositories
 
-import ru.otus.otuskotlin.ads_vehicles.backend.datasets.IVehicleStockDataSet
-import ru.otus.otuskotlin.ads_vehicles.backend.exceptions.RepositoryIsNotInitialized
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Equipment
-import ru.otus.otuskotlin.ads_vehicles.backend.repositories.*
+import ru.otus.otuskotlin.ads_vehicles.storage.common.IVehicleStockFixtureDataSet
+import ru.otus.otuskotlin.ads_vehicles.storage.common.exceptions.RepositoryIsNotInitialized
+import ru.otus.otuskotlin.ads_vehicles.storage.common.repositories.*
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
 import kotlin.time.ExperimentalTime
@@ -15,7 +15,7 @@ class RepositoryFactory : IRepositoryFactory {
     private var generationRepository: GenerationRepoInmemory? = null
     private var equipmentRepository: EquipmentRepoInmemory? = null
 
-    constructor(vehicleStockDataSet: IVehicleStockDataSet, ttlHours: Int? = null) {
+    constructor(vehicleStockDataSet: IVehicleStockFixtureDataSet, ttlHours: Int? = null) {
         @OptIn(ExperimentalTime::class)
         val ttl: Duration = (ttlHours ?: 24).toDuration(DurationUnit.HOURS)
         val equipments: Collection<Equipment> = vehicleStockDataSet.getTree()

@@ -4,10 +4,7 @@ import ru.otus.otuskotlin.ads_vehicles.backend.contexts.EquipmentContext
 import ru.otus.otuskotlin.ads_vehicles.backend.contexts.GenerationContext
 import ru.otus.otuskotlin.ads_vehicles.backend.contexts.MakeContext
 import ru.otus.otuskotlin.ads_vehicles.backend.contexts.ModelContext
-import ru.otus.otuskotlin.ads_vehicles.backend.repositories.IEquipmentRepository
-import ru.otus.otuskotlin.ads_vehicles.backend.repositories.IGenerationRepository
-import ru.otus.otuskotlin.ads_vehicles.backend.repositories.IMakeRepository
-import ru.otus.otuskotlin.ads_vehicles.backend.repositories.IModelRepository
+import ru.otus.otuskotlin.ads_vehicles.storage.common.repositories.*
 import ru.otus.otuskotlin.ads_vehicles.transport.models.*
 import ru.otus.otuskotlin.ads_vehicles.transport.multiplatform.backend.mappers.responseIndex
 import ru.otus.otuskotlin.ads_vehicles.transport.multiplatform.backend.mappers.setQuery

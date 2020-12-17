@@ -4,9 +4,9 @@ import org.cache2k.Cache
 import ru.otus.otuskotlin.ads_vehicles.backend.contexts.EquipmentContext
 import ru.otus.otuskotlin.ads_vehicles.backend.exceptions.EquipmentNotFound
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Equipment
-import ru.otus.otuskotlin.ads_vehicles.backend.repositories.IEquipmentRepository
 import ru.otus.otuskotlin.ads_vehicles.backend.repository.inmemory.buildCache
 import ru.otus.otuskotlin.ads_vehicles.backend.repository.inmemory.dto.EquipmentInmemoryDto
+import ru.otus.otuskotlin.ads_vehicles.storage.common.repositories.IEquipmentRepository
 import kotlin.time.Duration
 import kotlin.time.ExperimentalTime
 

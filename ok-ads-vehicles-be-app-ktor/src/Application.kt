@@ -8,18 +8,13 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.serialization.*
 import kotlinx.serialization.json.Json
-import ru.otus.otuskotlin.ads_vehicles.backend.datasets.FullStock
-import ru.otus.otuskotlin.ads_vehicles.backend.repositories.IMakeRepository
-import ru.otus.otuskotlin.ads_vehicles.backend.repositories.IRepositoryFactory
-import ru.otus.otuskotlin.ads_vehicles.backend.repository.inmemory.repositories.MakeRepoInmemory
 import ru.otus.otuskotlin.ads_vehicles.backend.repository.inmemory.repositories.RepositoryFactory
+import ru.otus.otuskotlin.ads_vehicles.storage.common.repositories.IRepositoryFactory
+import ru.otus.otuskotlin.ads_vehicles.storage.fixtures.FullStock
 import ru.otus.otuskotlin.ads_vehicles.transport.models.KmpEquipmentIndexQuery
 import ru.otus.otuskotlin.ads_vehicles.transport.models.KmpGenerationIndexQuery
 import ru.otus.otuskotlin.ads_vehicles.transport.models.KmpMakeIndexQuery
 import ru.otus.otuskotlin.ads_vehicles.transport.models.KmpModelIndexQuery
-import kotlin.time.DurationUnit
-import kotlin.time.ExperimentalTime
-import kotlin.time.toDuration
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 

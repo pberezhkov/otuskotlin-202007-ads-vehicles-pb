@@ -48,6 +48,8 @@ dependencies {
     implementation(project(":ok-ads-vehicles-be-common"))
     implementation(project(":ok-ads-vehicles-mp-transport-models"))
     implementation(project(":ok-ads-vehicles-be-transport-mp"))
+    implementation(project(":ok-ads-vehicles-be-storage-common"))
+    implementation(project(":ok-ads-vehicles-be-storage-fixtures"))
     implementation(project(":ok-ads-vehicles-be-repo-inmemory"))
 
     implementation(kotlin("stdlib-jdk8"))

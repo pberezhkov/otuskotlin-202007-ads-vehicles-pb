@@ -4,9 +4,9 @@ import org.cache2k.Cache
 import ru.otus.otuskotlin.ads_vehicles.backend.contexts.GenerationContext
 import ru.otus.otuskotlin.ads_vehicles.backend.exceptions.GenerationNotFound
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Generation
-import ru.otus.otuskotlin.ads_vehicles.backend.repositories.IGenerationRepository
 import ru.otus.otuskotlin.ads_vehicles.backend.repository.inmemory.buildCache
 import ru.otus.otuskotlin.ads_vehicles.backend.repository.inmemory.dto.GenerationInmemoryDto
+import ru.otus.otuskotlin.ads_vehicles.storage.common.repositories.IGenerationRepository
 import kotlin.time.Duration
 import kotlin.time.ExperimentalTime
 
