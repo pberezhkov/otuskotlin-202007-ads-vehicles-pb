@@ -9,14 +9,17 @@ import kotlin.time.Duration
 import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalTime::class)
+fun <D> buildCache(ttl: Duration): Cache<String, D> = Cache2kBuilder.of<String, D>(Cache2kConfiguration<String, D>())
+        .expireAfterWrite(ttl.toLongMilliseconds(), TimeUnit.HOURS)
+        .suppressExceptions(false)
+        .build()
+
+@OptIn(ExperimentalTime::class)
 fun <D, M : IModel> buildCache(
         ttl: Duration,
         initObjects: Collection<M>,
         mappingFunc: (M) -> D
-): Cache<String, D> = Cache2kBuilder.of<String, D>(Cache2kConfiguration<String, D>())
-        .expireAfterWrite(ttl.toLongMilliseconds(), TimeUnit.MILLISECONDS)
-        .suppressExceptions(false)
-        .build()
+): Cache<String, D> = buildCache<D>(ttl)
         .also { cache ->
             initObjects.forEach {
                 if (!cache.containsKey(it.id)) {

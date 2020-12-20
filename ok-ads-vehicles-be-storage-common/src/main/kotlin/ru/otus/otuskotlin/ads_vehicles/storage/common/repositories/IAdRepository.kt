@@ -6,8 +6,8 @@ import ru.otus.otuskotlin.ads_vehicles.backend.models.ad.Ad
 interface IAdRepository {
     suspend fun get(id: String): Ad
     suspend fun index(filter: AdContext.Filter): Collection<Ad>
-    suspend fun create(Ad: Ad): Ad
-    suspend fun update(Ad: Ad): Ad
+    suspend fun create(ad: Ad): Ad
+    suspend fun update(ad: Ad): Ad
 
     companion object {
         val NONE = object: IAdRepository {
@@ -19,11 +19,11 @@ interface IAdRepository {
                 TODO("Not yet implemented")
             }
 
-            override suspend fun create(Ad: Ad): Ad {
+            override suspend fun create(ad: Ad): Ad {
                 TODO("Not yet implemented")
             }
 
-            override suspend fun update(Ad: Ad): Ad {
+            override suspend fun update(ad: Ad): Ad {
                 TODO("Not yet implemented")
             }
         }

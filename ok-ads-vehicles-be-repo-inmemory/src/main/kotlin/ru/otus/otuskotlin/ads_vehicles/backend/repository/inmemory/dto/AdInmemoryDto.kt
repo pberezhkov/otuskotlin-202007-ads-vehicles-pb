@@ -1,8 +1,18 @@
 package ru.otus.otuskotlin.ads_vehicles.backend.repository.inmemory.dto
 
+import ru.otus.otuskotlin.ads_vehicles.backend.models.User
 import ru.otus.otuskotlin.ads_vehicles.backend.models.ad.Ad
 import ru.otus.otuskotlin.ads_vehicles.backend.models.ad.Mileage
+import ru.otus.otuskotlin.ads_vehicles.backend.models.ad.MoneyAmount
+import ru.otus.otuskotlin.ads_vehicles.backend.models.ad.Picture
+import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Equipment
+import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Generation
+import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Make
+import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Model
+import java.awt.Color
+import java.time.LocalDate
 import java.time.Year
+import java.util.*
 
 @OptIn(ExperimentalUnsignedTypes::class)
 data class AdInmemoryDto(
@@ -19,7 +29,7 @@ data class AdInmemoryDto(
         val makeId: String? = null,
         val modelId: String? = null,
         val generationId: String? = null,
-        val equipment: String? = null,
+        val equipmentId: String? = null,
         val needsRepair: Boolean? = null,
         val pictureIds: List<String>? = null,
         val description: String? = null,
@@ -47,7 +57,7 @@ data class AdInmemoryDto(
                 makeId = ad.make.id,
                 modelId = ad.model.id,
                 generationId = ad.generation.id,
-                equipment = ad.equipment.id,
+                equipmentId = ad.equipment.id,
                 needsRepair = ad.needsRepair,
                 pictureIds = ad.pictures?.map { it.id }
                         ?.filter { it != null }?.requireNoNulls(),
@@ -58,7 +68,14 @@ data class AdInmemoryDto(
         )
     }
 
-    fun model(): Ad = Ad(
+    fun model(
+            make: Make? = null,
+            model: Model? = null,
+            generation: Generation? = null,
+            equipment: Equipment? = null,
+            pictures: List<Picture>? = null,
+            user: User? = null
+    ): Ad = Ad(
             id = this.id,
             year = this.year?.let { Year.of(it.toInt()) },
             mileage = Mileage(
@@ -72,6 +89,22 @@ data class AdInmemoryDto(
                     }
             ),
             owners = this.owners?.toInt(),
-
+            price = MoneyAmount(
+                    amount = this.priceAmount?.toInt(),
+                    currency = this.priceCurrency?.let { Currency.getInstance(it) }
+            ),
+            vin = this.vin,
+            licensePlate = this.licensePlate,
+            colour = this.colour?.let { Color(it.toInt()) },
+            make = make ?: Make.NONE,
+            model = model ?: Model.NONE,
+            generation = generation ?: Generation.NONE,
+            equipment = equipment ?: Equipment.NONE,
+            needsRepair = this.needsRepair,
+            pictures = pictures?.toMutableList(),
+            description = description,
+            user = user ?: User.NONE,
+            date = this.date?.let { LocalDate.parse(it) },
+            isActive = this.isActive
     )
 }

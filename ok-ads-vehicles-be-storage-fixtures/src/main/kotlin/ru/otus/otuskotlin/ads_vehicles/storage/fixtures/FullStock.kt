@@ -14,14 +14,17 @@ class FullStock(): IVehicleStockFixtureDataSet {
     private fun germany(): Collection<Equipment> {
         return AudiStock().getTree()
                 .plus(BmwStock().getTree())
+                .plus(VolkswagenStock().getTree())
     }
 
     private fun japan(): Collection<Equipment> {
-        return ToyotaStock().getTree()
+        return MazdaStock().getTree()
+                .plus(ToyotaStock().getTree())
+                .plus(SubaruStock().getTree())
     }
 
     private fun gb(): Collection<Equipment> {
-        return listOf()
+        return BentleyStock().getTree()
     }
 
     private fun us(): Collection<Equipment> {

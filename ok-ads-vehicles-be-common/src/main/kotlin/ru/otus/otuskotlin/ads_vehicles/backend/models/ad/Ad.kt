@@ -1,5 +1,6 @@
 package ru.otus.otuskotlin.ads_vehicles.backend.models.ad
 
+import ru.otus.otuskotlin.ads_vehicles.backend.models.IModel
 import ru.otus.otuskotlin.ads_vehicles.backend.models.User
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Equipment
 import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Generation
@@ -16,7 +17,7 @@ data class Ad (
         /**
          * ID
          */
-        val id: String? = null,
+        override val id: String? = null,
 
         /**
          * Vehicle production year
@@ -102,7 +103,7 @@ data class Ad (
          * Activity flag
          */
         val isActive: Boolean? = null
-) {
+) : IModel {
     companion object {
         val NONE: Ad = Ad()
     }
