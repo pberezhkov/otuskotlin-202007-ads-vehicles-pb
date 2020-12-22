@@ -5,10 +5,15 @@ class Processor<T> private constructor(
         private val handlers: Collection<IExec<T>>,
         private val errorHandler: CorErrorHandler<T>
 ): IExec<T> {
-    override suspend fun exec(ctx: T): Unit {
-
+    override suspend fun exec(subject: T): Unit {
+        try {
+            if (this.matcher(subject)) this.handlers.forEach { it.exec(subject) }
+        } catch (e: Throwable) {
+            this.errorHandler(subject, e)
+        }
     }
 
+    @CorDslMarker
     class Builder<T> {
         private var matcher: CorMatcher<T> = { true }
         private var handlers: MutableList<IExec<T>> = mutableListOf()
@@ -18,7 +23,14 @@ class Processor<T> private constructor(
             this.matcher = block
         }
 
-        fun exec(handler: IExec<T>) = this.handlers.plus(handler)
+        fun exec(handler: IExec<T>) = this.handlers.add(handler)
+        fun exec(block: CorHandler<T>) {
+            this.handlers.add(
+                    corHandler<T> { exec(block) }
+            )
+        }
+
+        fun handler(block: Handler.Builder<T>.() -> Unit) = this.handlers.add(corHandler(block))
 
         fun build(): Processor<T> {
             return Processor<T>(

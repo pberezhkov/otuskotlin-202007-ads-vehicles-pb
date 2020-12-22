@@ -11,6 +11,9 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
+    testImplementation(kotlin("test"))
+    testImplementation(kotlin("test-junit"))
     implementation(project(":ok-ads-vehicles-be-common"))
     implementation(project(":ok-ads-vehicles-be-storage-common"))
+    implementation(project(":ok-ads-vehicles-mp-common"))
 }

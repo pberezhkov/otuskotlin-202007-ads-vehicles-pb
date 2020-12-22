@@ -8,6 +8,7 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.serialization.*
 import kotlinx.serialization.json.Json
+import ru.otus.otuskotlin.ads_vehicles.backend.logics.MakeCrud
 import ru.otus.otuskotlin.ads_vehicles.backend.repository.inmemory.repositories.AdRepoInmemory
 import ru.otus.otuskotlin.ads_vehicles.backend.repository.inmemory.repositories.RepositoryFactory
 import ru.otus.otuskotlin.ads_vehicles.storage.common.repositories.IRepositoryFactory
@@ -21,7 +22,7 @@ fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 fun Application.module(testing: Boolean = false) {
     val repoFactory: IRepositoryFactory = RepositoryFactory(FullStock())
     val stockService: KmpStockService = KmpStockService(
-            makeRepository = repoFactory.getMakeRepository(),
+            makeCrud = MakeCrud(repoFactory.getMakeRepository()),
             modelRepository = repoFactory.getModelRepository(),
             generationRepository = repoFactory.getGenerationRepository(),
             equipmentRepository = repoFactory.getEquipmentRepository()

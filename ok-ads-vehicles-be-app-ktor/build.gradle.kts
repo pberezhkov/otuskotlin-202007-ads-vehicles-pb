@@ -46,6 +46,7 @@ repositories {
 
 dependencies {
     implementation(project(":ok-ads-vehicles-be-common"))
+    implementation(project(":ok-ads-vehicles-be-logics"))
     implementation(project(":ok-ads-vehicles-mp-transport-models"))
     implementation(project(":ok-ads-vehicles-be-transport-mp"))
     implementation(project(":ok-ads-vehicles-be-storage-common"))

@@ -1,24 +1,28 @@
 package ru.otus.otuskotlin.ads_vehicles
 
+import ru.otus.otuskotlin.ads_vehicles.backend.GenericError
 import ru.otus.otuskotlin.ads_vehicles.backend.contexts.EquipmentContext
 import ru.otus.otuskotlin.ads_vehicles.backend.contexts.GenerationContext
 import ru.otus.otuskotlin.ads_vehicles.backend.contexts.MakeContext
 import ru.otus.otuskotlin.ads_vehicles.backend.contexts.ModelContext
+import ru.otus.otuskotlin.ads_vehicles.backend.logics.MakeCrud
 import ru.otus.otuskotlin.ads_vehicles.storage.common.repositories.*
 import ru.otus.otuskotlin.ads_vehicles.transport.models.*
 import ru.otus.otuskotlin.ads_vehicles.transport.multiplatform.backend.mappers.responseIndex
 import ru.otus.otuskotlin.ads_vehicles.transport.multiplatform.backend.mappers.setQuery
 
 class KmpStockService(
-        private val makeRepository: IMakeRepository,
+        private val makeCrud: MakeCrud,
         private val modelRepository: IModelRepository,
         private val generationRepository: IGenerationRepository,
         private val equipmentRepository: IEquipmentRepository
 ) {
     suspend fun indexMake(query: KmpMakeIndexQuery): KmpMakeIndexResponse = MakeContext().run {
-        this.setQuery(query)
-
-        this.responseMakeIndex = this@KmpStockService.makeRepository.index(this.filter).toMutableList()
+        try {
+            this@KmpStockService.makeCrud.index(this.setQuery(query))
+        } catch (e: Throwable) {
+            this.errors.add(GenericError(message = e.message, originalException = e))
+        }
 
         this.responseIndex()
     }
