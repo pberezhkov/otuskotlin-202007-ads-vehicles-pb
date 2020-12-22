@@ -5,4 +5,5 @@ interface IRepositoryFactory {
     fun getModelRepository(): IModelRepository
     fun getGenerationRepository(): IGenerationRepository
     fun getEquipmentRepository(): IEquipmentRepository
+    fun getAdRepository(): IAdRepository
 }

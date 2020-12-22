@@ -14,6 +14,7 @@ class RepositoryFactory : IRepositoryFactory {
     private var modelRepository: ModelRepoInmemory? = null
     private var generationRepository: GenerationRepoInmemory? = null
     private var equipmentRepository: EquipmentRepoInmemory? = null
+    private var adRepository: AdRepoInmemory? = null
 
     constructor(vehicleStockDataSet: IVehicleStockFixtureDataSet, ttlHours: Int? = null) {
         @OptIn(ExperimentalTime::class)
@@ -32,6 +33,13 @@ class RepositoryFactory : IRepositoryFactory {
                 this.modelRepository!!
         )
         this.equipmentRepository = EquipmentRepoInmemory(ttl, equipments, this.generationRepository!!)
+        this.adRepository = AdRepoInmemory(
+                ttl,
+                this.makeRepository!!,
+                this.modelRepository!!,
+                this.generationRepository!!,
+                this.equipmentRepository!!
+        )
     }
 
     override fun getMakeRepository(): IMakeRepository {
@@ -48,5 +56,9 @@ class RepositoryFactory : IRepositoryFactory {
 
     override fun getEquipmentRepository(): IEquipmentRepository {
         return this.equipmentRepository ?: throw RepositoryIsNotInitialized(EquipmentRepoInmemory::class.toString())
+    }
+
+    override fun getAdRepository(): IAdRepository {
+        return this.adRepository ?: throw RepositoryIsNotInitialized(AdRepoInmemory::class.toString())
     }
 }

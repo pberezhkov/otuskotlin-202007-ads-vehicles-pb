@@ -48,3 +48,25 @@ Content-Type: application/json
 
 <> 2020-12-15T212623.200.json
 <> 2020-12-15T212340.200.json
+
+###
+
+POST http://localhost:8080/api/ad
+Content-Type: application/json
+
+{
+"year": 2007,
+ "mileage": {
+ "value": 1000,
+   "unit": "km"
+ },
+  "owners": 3,
+  "price": {
+  "amount": 1000000,
+    "currency": "RUB"
+  },
+  "makeId": "0fee08a6f90299dbd4f51d4a7bf03cbb683884a9",
+  "modelId": "3e81afef6be6469a95f38c698fb0209c2e8fb821",
+  "generationId": "0720a2fe6024a5b40c19b390f5350d947eb1b581",
+  "equipmentId": "11dade1da4b116f7c78cc3429bc96e0252840327"
+}

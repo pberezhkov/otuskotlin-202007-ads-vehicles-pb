@@ -8,4 +8,10 @@ enum class ContextStatus {
 
     val isError: Boolean
         get() = this.equals(FAILURE)
+
+    val isProcessed: Boolean
+        get() = listOf<ContextStatus>(ContextStatus.SUCCESS, ContextStatus.FAILURE).contains(this)
+
+    val isNew: Boolean
+        get() = this.equals(ContextStatus.NONE)
 }

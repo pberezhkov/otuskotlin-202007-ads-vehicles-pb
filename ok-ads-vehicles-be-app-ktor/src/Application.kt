@@ -8,13 +8,11 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.serialization.*
 import kotlinx.serialization.json.Json
+import ru.otus.otuskotlin.ads_vehicles.backend.repository.inmemory.repositories.AdRepoInmemory
 import ru.otus.otuskotlin.ads_vehicles.backend.repository.inmemory.repositories.RepositoryFactory
 import ru.otus.otuskotlin.ads_vehicles.storage.common.repositories.IRepositoryFactory
 import ru.otus.otuskotlin.ads_vehicles.storage.fixtures.FullStock
-import ru.otus.otuskotlin.ads_vehicles.transport.models.KmpEquipmentIndexQuery
-import ru.otus.otuskotlin.ads_vehicles.transport.models.KmpGenerationIndexQuery
-import ru.otus.otuskotlin.ads_vehicles.transport.models.KmpMakeIndexQuery
-import ru.otus.otuskotlin.ads_vehicles.transport.models.KmpModelIndexQuery
+import ru.otus.otuskotlin.ads_vehicles.transport.models.*
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -22,12 +20,13 @@ fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 @kotlin.jvm.JvmOverloads
 fun Application.module(testing: Boolean = false) {
     val repoFactory: IRepositoryFactory = RepositoryFactory(FullStock())
-    val service: KmpStockService = KmpStockService(
+    val stockService: KmpStockService = KmpStockService(
             makeRepository = repoFactory.getMakeRepository(),
             modelRepository = repoFactory.getModelRepository(),
             generationRepository = repoFactory.getGenerationRepository(),
             equipmentRepository = repoFactory.getEquipmentRepository()
     )
+    val adService: KmpAdService = KmpAdService(repoFactory.getAdRepository())
 
     install(CORS) {
         method(HttpMethod.Options)
@@ -52,23 +51,23 @@ fun Application.module(testing: Boolean = false) {
     routing {
         route("/api") {
             get("/make/index") {
-                call.respond(service.indexMake(call.receive<KmpMakeIndexQuery>()))
+                call.respond(stockService.indexMake(call.receive<KmpMakeIndexQuery>()))
             }
 
             get("/model/index") {
-                call.respond(service.indexModel(call.receive<KmpModelIndexQuery>()))
+                call.respond(stockService.indexModel(call.receive<KmpModelIndexQuery>()))
             }
 
             get("/generation/index") {
-                call.respond(service.indexGeneration(call.receive<KmpGenerationIndexQuery>()))
+                call.respond(stockService.indexGeneration(call.receive<KmpGenerationIndexQuery>()))
             }
 
             get("/equipment/index") {
-                call.respond(service.indexEquipment(call.receive<KmpEquipmentIndexQuery>()))
+                call.respond(stockService.indexEquipment(call.receive<KmpEquipmentIndexQuery>()))
             }
 
             post("/ad") {
-
+                call.respond(adService.create(call.receive<KmpAdCreateQuery>()))
             }
 
             patch("/ad") {

@@ -45,10 +45,18 @@ class AdRepoInmemory(
             .filter { filter.yearTo?.let { yearTo ->
                 it.value.year?.let { year -> year <= yearTo.value.toUShort() } ?: true
             } ?: true }
-            .filter { filter.mileageFrom?.let { true } ?: true }    // todo: implement
-            .filter { filter.mileageTo?.let { true } ?: true }      // todo: implement
-            .filter { filter.priceFrom?.let { true } ?: true }      // todo: implement
-            .filter { filter.priceTo?.let { true } ?: true }      // todo: implement
+            .filter {
+                filter.mileageFrom?.let { true } ?: true    // todo: implement
+            }
+            .filter {
+                filter.mileageTo?.let { true } ?: true      // todo: implement
+            }
+            .filter {
+                filter.priceFrom?.let { true } ?: true      // todo: implement
+            }
+            .filter {
+                filter.priceTo?.let { true } ?: true        // todo: implement
+            }
             .filter {
                 filter.maxOwners?.let { maxOwners ->
                     it.value.owners?.let { owners -> owners.toInt() <= maxOwners } ?: true
