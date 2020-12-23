@@ -1,10 +1,7 @@
 package ru.otus.otuskotlin.ads_vehicles
 
 import ru.otus.otuskotlin.ads_vehicles.backend.GenericError
-import ru.otus.otuskotlin.ads_vehicles.backend.contexts.EquipmentContext
-import ru.otus.otuskotlin.ads_vehicles.backend.contexts.GenerationContext
-import ru.otus.otuskotlin.ads_vehicles.backend.contexts.MakeContext
-import ru.otus.otuskotlin.ads_vehicles.backend.contexts.ModelContext
+import ru.otus.otuskotlin.ads_vehicles.backend.contexts.*
 import ru.otus.otuskotlin.ads_vehicles.backend.logics.MakeCrud
 import ru.otus.otuskotlin.ads_vehicles.storage.common.repositories.*
 import ru.otus.otuskotlin.ads_vehicles.transport.models.*
@@ -21,6 +18,7 @@ class KmpStockService(
         try {
             this@KmpStockService.makeCrud.index(this.setQuery(query))
         } catch (e: Throwable) {
+            this.status = ContextStatus.FAILURE
             this.errors.add(GenericError(message = e.message, originalException = e))
         }
 

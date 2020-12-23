@@ -1,14 +1,15 @@
-package ru.otus.otuskotlin.ads_vehicles.backend.logics.cor
+package ru.otus.otuskotlin.ads_vehicles.backend.logics.cor.make
 
 import ru.otus.otuskotlin.ads_vehicles.backend.GenericError
 import ru.otus.otuskotlin.ads_vehicles.backend.ValidationError
 import ru.otus.otuskotlin.ads_vehicles.backend.contexts.ContextStatus
 import ru.otus.otuskotlin.ads_vehicles.backend.contexts.MakeContext
+import ru.otus.otuskotlin.ads_vehicles.common.cor.IExec
 import ru.otus.otuskotlin.ads_vehicles.common.cor.corProcessor
 import ru.otus.otuskotlin.ads_vehicles.storage.common.repositories.IMakeRepository
 
 class MakeGetChain(private val repository: IMakeRepository) {
-    suspend fun exec(ctx: MakeContext) = corProcessor<MakeContext> {
+    private val chain: IExec<MakeContext> = corProcessor<MakeContext> {
         isApplicable { this.status.equals(ContextStatus.NONE) }
 
         exec { this.status = ContextStatus.PENDING }
@@ -32,5 +33,7 @@ class MakeGetChain(private val repository: IMakeRepository) {
                 }
             }
         }
-    }.exec(ctx)
+    }
+
+    suspend fun exec(ctx: MakeContext) = this.chain.exec(ctx)
 }

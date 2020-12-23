@@ -8,6 +8,7 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.serialization.*
 import kotlinx.serialization.json.Json
+import ru.otus.otuskotlin.ads_vehicles.backend.logics.AdCrud
 import ru.otus.otuskotlin.ads_vehicles.backend.logics.MakeCrud
 import ru.otus.otuskotlin.ads_vehicles.backend.repository.inmemory.repositories.AdRepoInmemory
 import ru.otus.otuskotlin.ads_vehicles.backend.repository.inmemory.repositories.RepositoryFactory
@@ -27,7 +28,10 @@ fun Application.module(testing: Boolean = false) {
             generationRepository = repoFactory.getGenerationRepository(),
             equipmentRepository = repoFactory.getEquipmentRepository()
     )
-    val adService: KmpAdService = KmpAdService(repoFactory.getAdRepository())
+    val adService: KmpAdService = KmpAdService(AdCrud(
+            adRepository = repoFactory.getAdRepository(),
+            equipmentRepository = repoFactory.getEquipmentRepository()
+    ))
 
     install(CORS) {
         method(HttpMethod.Options)
