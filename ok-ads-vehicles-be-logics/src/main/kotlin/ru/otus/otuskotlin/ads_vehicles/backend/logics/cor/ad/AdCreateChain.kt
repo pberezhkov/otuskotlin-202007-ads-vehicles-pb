@@ -8,6 +8,7 @@ import ru.otus.otuskotlin.ads_vehicles.backend.models.vehicle.Equipment
 import ru.otus.otuskotlin.ads_vehicles.common.cor.IExec
 import ru.otus.otuskotlin.ads_vehicles.common.cor.corProcessor
 import ru.otus.otuskotlin.ads_vehicles.storage.common.repositories.*
+import java.util.*
 
 class AdCreateChain(
         private val adRepository: IAdRepository,
@@ -26,6 +27,12 @@ class AdCreateChain(
             ) {
                 this.status = ContextStatus.FAILURE
                 this.errors.add(ValidationError(message = "Invalid vehicle"))
+            }
+        }
+
+        exec {
+            if (this.requestAd!!.id == null) {
+                this.requestAd!!.id = UUID.randomUUID().toString()
             }
         }
 

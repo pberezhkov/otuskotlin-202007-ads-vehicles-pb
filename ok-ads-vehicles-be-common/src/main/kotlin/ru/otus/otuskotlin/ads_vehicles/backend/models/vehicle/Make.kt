@@ -10,7 +10,7 @@ data class Make (
         /**
          * ID
          */
-        override val id: String? = null,
+        override var id: String? = null,
 
         /**
          * Name

@@ -10,7 +10,6 @@ import io.ktor.serialization.*
 import kotlinx.serialization.json.Json
 import ru.otus.otuskotlin.ads_vehicles.backend.logics.AdCrud
 import ru.otus.otuskotlin.ads_vehicles.backend.logics.MakeCrud
-import ru.otus.otuskotlin.ads_vehicles.backend.repository.inmemory.repositories.AdRepoInmemory
 import ru.otus.otuskotlin.ads_vehicles.backend.repository.inmemory.repositories.RepositoryFactory
 import ru.otus.otuskotlin.ads_vehicles.storage.common.repositories.IRepositoryFactory
 import ru.otus.otuskotlin.ads_vehicles.storage.fixtures.FullStock
@@ -76,15 +75,15 @@ fun Application.module(testing: Boolean = false) {
             }
 
             patch("/ad") {
-
+                call.respond(adService.update(call.receive<KmpAdUpdateQuery>()))
             }
 
             get("/ad/index") {
-
+                call.respond(adService.index(call.receive<KmpAdIndexQuery>()))
             }
 
             get("/ad") {
-
+                call.respond(adService.get(call.receive<KmpByIdQuery>()))
             }
         }
     }

@@ -69,6 +69,7 @@ data class AdInmemoryDto(
     }
 
     fun model(
+            id: String? = null,
             make: Make? = null,
             model: Model? = null,
             generation: Generation? = null,
@@ -76,7 +77,7 @@ data class AdInmemoryDto(
             pictures: List<Picture>? = null,
             user: User? = null
     ): Ad = Ad(
-            id = this.id,
+            id = this.id ?: id,
             year = this.year?.let { Year.of(it.toInt()) },
             mileage = Mileage(
                     value = this.mileageValue?.toInt(),

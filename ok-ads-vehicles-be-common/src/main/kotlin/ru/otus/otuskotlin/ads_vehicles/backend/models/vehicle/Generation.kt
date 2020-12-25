@@ -10,7 +10,7 @@ data class Generation(
         /**
          * ID
          */
-        override val id: String? = null,
+        override var id: String? = null,
 
         /**
          * Model

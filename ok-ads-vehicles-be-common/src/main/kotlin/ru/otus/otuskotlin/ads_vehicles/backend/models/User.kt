@@ -9,7 +9,7 @@ data class User (
         /**
          * ID
          */
-        override val id: String? = null,
+        override var id: String? = null,
 
         /**
          * Name

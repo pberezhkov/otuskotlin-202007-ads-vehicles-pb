@@ -70,3 +70,12 @@ Content-Type: application/json
   "generationId": "0720a2fe6024a5b40c19b390f5350d947eb1b581",
   "equipmentId": "11dade1da4b116f7c78cc3429bc96e0252840327"
 }
+
+###
+
+GET http://localhost:8080/api/ad
+Content-Type: application/json
+
+{
+"id": "2dbf62b4-e22b-4899-939c-ded1a75679d6"
+}

@@ -17,7 +17,7 @@ data class Ad (
         /**
          * ID
          */
-        override val id: String? = null,
+        override var id: String? = null,
 
         /**
          * Vehicle production year

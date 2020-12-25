@@ -9,7 +9,7 @@ data class Model (
         /**
          * ID
          */
-        override val id: String? = null,
+        override var id: String? = null,
 
         /**
          * Make
