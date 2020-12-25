@@ -6,7 +6,7 @@ servers:
   - url: http://localhost:8080/api
 tags:
   - name: make
-    description: Операции с Маркой
+    description: Операции с Марками
 paths:
   /make/index:
     get:
@@ -32,6 +32,9 @@ paths:
 
 components:
   schemas:
+    # AD
+
+    # MAKE
     MakeIndexRequest:
       type: object
       properties:
@@ -68,3 +71,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Make'
+
+    # MODEL
+
+    # GENERATION
+
+    # EQUIPMENT

@@ -7,6 +7,7 @@ import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.serialization.*
+import io.ktor.util.pipeline.*
 import kotlinx.serialization.json.Json
 import ru.otus.otuskotlin.ads_vehicles.backend.logics.AdCrud
 import ru.otus.otuskotlin.ads_vehicles.backend.logics.MakeCrud
@@ -90,3 +91,4 @@ fun Application.module(testing: Boolean = false) {
     }
 }
 
+suspend inline fun <reified T, reified R> PipelineContext<Unit, ApplicationCall>.request()
